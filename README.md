@@ -1,4 +1,20 @@
-import java.awt.*;
+here we are created somethin in awt
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+java.awt.*;
 import java.awt.event.*;
 
 public class Calculator extends Frame implements ActionListener {
