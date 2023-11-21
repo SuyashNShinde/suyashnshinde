@@ -1,0 +1,63 @@
+18. Write a program to implement priority queue. Add job and delete job from queue
+based on its time priority value. If there is less time value then higher the priority for
+addition and deletion
+
+#include <iostream>
+#include <stack>
+#include <cctype> // For isdigit() function
+
+// Function to check if a character is an operator
+bool isOperator(char c) {
+    return (c == '+' || c == '-' || c == '*' || c == '/');
+}
+
+// Function to evaluate a postfix expression
+int evaluatePostfix(const std::string& postfix) {
+    std::stack<int> stack;
+
+    for (char ch : postfix) {
+        if (std::isdigit(ch)) {
+            stack.push(ch - '0'); // Convert character to integer and push to the stack
+        } else if (isOperator(ch)) {
+            // Pop two operands from the stack, perform operation, and push result back
+            int operand2 = stack.top();
+            stack.pop();
+            int operand1 = stack.top();
+            stack.pop();
+
+            switch (ch) {
+                case '+':
+                    stack.push(operand1 + operand2);
+                    break;
+                case '-':
+                    stack.push(operand1 - operand2);
+                    break;
+                case '*':
+                    stack.push(operand1 * operand2);
+                    break;
+                case '/':
+                    stack.push(operand1 / operand2);
+                    break;
+            }
+        }
+    }
+
+    // The final result will be on the top of the stack
+    return stack.top();
+}
+
+int main() {
+    std::string postfixExpression;
+
+    // Get the postfix expression from the user
+    std::cout << "Enter a postfix expression: ";
+    std::cin >> postfixExpression;
+
+    // Evaluate the postfix expression
+    int result = evaluatePostfix(postfixExpression);
+
+    // Display the result
+    std::cout << "Result: " << result << std::endl;
+
+    return 0;
+}
