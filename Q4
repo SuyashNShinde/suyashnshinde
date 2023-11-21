@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+
+// Function to determine the frequency of occurrence of a particular character in the string
+int frequency(const std::string& str, char targetChar) {
+    int count = 0;
+    for (char c : str) {
+        if (c == targetChar) {
+            count++;
+        }
+    }
+    return count;
+}
+
+// Function to check if a given string is a palindrome
+bool isPalindrome(const std::string& str) {
+    int start = 0;
+    int end = str.length() - 1;
+
+    // Ignore case while checking for palindrome
+    while (start < end) {
+        if (std::tolower(str[start]) != std::tolower(str[end])) {
+            return false;
+        }
+        start++;
+        end--;
+    }
+
+    return true;
+}
+
+int main() {
+    std::string inputString;
+    char targetChar;
+
+    // Get input string
+    std::cout << "Enter a string: ";
+    std::getline(std::cin, inputString);
+
+    // Get target character for frequency calculation
+    std::cout << "Enter a character to find its frequency: ";
+    std::cin >> targetChar;
+
+    // Output frequency of the target character
+    std::cout << "Frequency of '" << targetChar << "': " << frequency(inputString, targetChar) << std::endl;
+
+    // Check if the string is a palindrome
+    if (isPalindrome(inputString)) {
+        std::cout << "The entered string is a palindrome." << std::endl;
+    } else {
+        std::cout << "The entered string is not a palindrome." << std::endl;
+    }
+
+    return 0;
+}
