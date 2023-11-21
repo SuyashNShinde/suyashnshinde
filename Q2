@@ -1,3 +1,9 @@
+Q2. ogram for String operations. Write the following functions:
+i. frequency (): that determines the frequency of occurrence of a particular
+character in the string.
+ii. delete (): that accepts two integers to specify the position of characters to
+bedeleted. The function computes a new string that the deleted characters
+
 #include <iostream>
 #include <string>
 
