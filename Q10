@@ -1,3 +1,7 @@
+Q10. Write a C++ Program to create and display a Singly linked list. Also write a
+function to insert a node at the beginning of linked list.
+
+
 #include <iostream>
 
 // Definition of a Node in the linked list
