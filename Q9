@@ -1,3 +1,9 @@
+Q9. Write C++ program for storing matrices. Write functions for
+i. Check whether given matrix is upper triangular or not
+ii. Compute summation of diagonal elements
+iii. Compute transpose of matrix
+
+
 #include <iostream>
 #include <vector>
 
