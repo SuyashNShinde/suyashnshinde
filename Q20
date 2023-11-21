@@ -1,0 +1,59 @@
+20. Write a modular program using object-oriented programming features to implement
+Binary search.
+
+#include <iostream>
+#include <vector>
+
+// Class representing a binary search operation
+class BinarySearch {
+public:
+    // Constructor with vector initialization
+    BinarySearch(const std::vector<int>& arr) : data(arr) {}
+
+    // Function to perform binary search
+    int search(int target) const {
+        int left = 0;
+        int right = data.size() - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (data[mid] == target) {
+                return mid; // Return the index if target is found
+            } else if (data[mid] < target) {
+                left = mid + 1; // Search in the right half
+            } else {
+                right = mid - 1; // Search in the left half
+            }
+        }
+
+        return -1; // Return -1 if target is not found
+    }
+
+private:
+    std::vector<int> data; // Data container for binary search
+};
+
+int main() {
+    // Example usage of binary search
+    std::vector<int> dataArray = {9, 12, 23, 34, 45, 54, 56, 78, 89};
+    BinarySearch binarySearch(dataArray);
+
+    int target;
+
+    // Get the target value from the user
+    std::cout << "Enter the target value: ";
+    std::cin >> target;
+
+    // Perform binary search
+    int result = binarySearch.search(target);
+
+    // Display the result
+    if (result != -1) {
+        std::cout << "Target found at index: " << result << std::endl;
+    } else {
+        std::cout << "Target not found in the array." << std::endl;
+    }
+
+    return 0;
+}
