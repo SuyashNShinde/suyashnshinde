@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+
+// Function to delete characters from a string based on specified positions
+std::string deleteChars(const std::string& str, int startPos, int endPos) {
+    std::string result;
+    int length = str.length();
+
+    // Validate positions
+    if (startPos < 0 || startPos >= length || endPos < 0 || endPos >= length || startPos > endPos) {
+        std::cerr << "Invalid positions for deletion." << std::endl;
+        return str;  // Return the original string if positions are invalid
+    }
+
+    // Construct the new string with characters not in the specified range
+    for (int i = 0; i < length; ++i) {
+        if (i < startPos || i > endPos) {
+            result += str[i];
+        }
+    }
+
+    return result;
+}
+
+// Function to determine the frequency of occurrence of a particular character in the string
+int frequency(const std::string& str, char targetChar) {
+    int count = 0;
+    for (char c : str) {
+        if (c == targetChar) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int main() {
+    std::string inputString;
+    int startPos, endPos;
+    char targetChar;
+
+    // Get input string
+    std::cout << "Enter a string: ";
+    std::getline(std::cin, inputString);
+
+    // Get positions for deletion
+    std::cout << "Enter start position for deletion: ";
+    std::cin >> startPos;
+    std::cout << "Enter end position for deletion: ";
+    std::cin >> endPos;
+
+    // Output the new string after deletion
+    std::string resultString = deleteChars(inputString, startPos, endPos);
+    std::cout << "String after deletion: " << resultString << std::endl;
+
+    // Get target character for frequency calculation
+    std::cout << "Enter a character to find its frequency: ";
+    std::cin >> targetChar;
+
+    // Output frequency of the target character
+    std::cout << "Frequency of '" << targetChar << "': " << frequency(inputString, targetChar) << std::endl;
+
+    return 0;
+}
