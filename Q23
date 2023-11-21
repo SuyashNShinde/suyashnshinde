@@ -1,0 +1,62 @@
+23. Write a modular program using object-oriented programming features to implement
+Selection sort.
+
+#include <iostream>
+#include <vector>
+
+// Class representing a selection sort operation
+class SelectionSort {
+public:
+    // Constructor with vector initialization
+    SelectionSort(std::vector<int>& arr) : data(arr) {}
+
+    // Function to perform selection sort
+    void sort() {
+        int n = data.size();
+        for (int i = 0; i < n - 1; ++i) {
+            // Find the minimum element in unsorted part of the array
+            int minIndex = i;
+            for (int j = i + 1; j < n; ++j) {
+                if (data[j] < data[minIndex]) {
+                    minIndex = j;
+                }
+            }
+
+            // Swap the found minimum element with the first element
+            std::swap(data[minIndex], data[i]);
+        }
+    }
+
+    // Function to display the sorted array
+    void display() const {
+        std::cout << "Sorted Array: ";
+        for (int value : data) {
+            std::cout << value << " ";
+        }
+        std::cout << std::endl;
+    }
+
+private:
+    std::vector<int>& data; // Data container for selection sort
+};
+
+int main() {
+    // Example usage of selection sort
+    std::vector<int> dataArray = {64, 25, 12, 22, 11};
+    SelectionSort selectionSort(dataArray);
+
+    // Display the array before sorting
+    std::cout << "Original Array: ";
+    for (int value : dataArray) {
+        std::cout << value << " ";
+    }
+    std::cout << std::endl;
+
+    // Perform selection sort
+    selectionSort.sort();
+
+    // Display the sorted array
+    selectionSort.display();
+
+    return 0;
+}
