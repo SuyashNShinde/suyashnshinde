@@ -1,0 +1,49 @@
+19. Write a modular program using object-oriented programming features to implement
+Linear search.
+
+#include <iostream>
+#include <vector>
+
+// Class representing a linear search operation
+class LinearSearch {
+public:
+    // Constructor with vector initialization
+    LinearSearch(const std::vector<int>& arr) : data(arr) {}
+
+    // Function to perform linear search
+    int search(int target) const {
+        for (int i = 0; i < data.size(); ++i) {
+            if (data[i] == target) {
+                return i; // Return the index if target is found
+            }
+        }
+        return -1; // Return -1 if target is not found
+    }
+
+private:
+    std::vector<int> data; // Data container for linear search
+};
+
+int main() {
+    // Example usage of linear search
+    std::vector<int> dataArray = {12, 34, 45, 23, 56, 78, 89, 9, 54};
+    LinearSearch linearSearch(dataArray);
+
+    int target;
+
+    // Get the target value from the user
+    std::cout << "Enter the target value: ";
+    std::cin >> target;
+
+    // Perform linear search
+    int result = linearSearch.search(target);
+
+    // Display the result
+    if (result != -1) {
+        std::cout << "Target found at index: " << result << std::endl;
+    } else {
+        std::cout << "Target not found in the array." << std::endl;
+    }
+
+    return 0;
+}
