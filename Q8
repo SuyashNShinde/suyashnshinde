@@ -1,0 +1,53 @@
+#include <iostream>
+#include <vector>
+
+// Function to find the saddle point in a matrix
+void findSaddlePoint(const std::vector<std::vector<int>>& matrix) {
+    int m = matrix.size();
+    int n = matrix[0].size();
+
+    for (int i = 0; i < m; ++i) {
+        int saddleValue = matrix[i][0];
+        int saddleCol = 0;
+
+        // Find the minimum value in the row
+        for (int j = 1; j < n; ++j) {
+            if (matrix[i][j] < saddleValue) {
+                saddleValue = matrix[i][j];
+                saddleCol = j;
+            }
+        }
+
+        // Check if the minimum value is also the maximum in its column
+        bool isSaddlePoint = true;
+        for (int k = 0; k < m; ++k) {
+            if (matrix[k][saddleCol] > saddleValue) {
+                isSaddlePoint = false;
+                break;
+            }
+        }
+
+        // If a saddle point is found, print its location
+        if (isSaddlePoint) {
+            std::cout << "Saddle Point Found at: (" << i << ", " << saddleCol << ") with value: " << saddleValue << std::endl;
+            return;  // Return as soon as one saddle point is found
+        }
+    }
+
+    // If no saddle point is found
+    std::cout << "No Saddle Point Found." << std::endl;
+}
+
+int main() {
+    // Example matrix
+    std::vector<std::vector<int>> matrix = {
+        {4, 5, 6},
+        {3, 2, 1},
+        {8, 7, 9}
+    };
+
+    // Find and display the saddle point
+    findSaddlePoint(matrix);
+
+    return 0;
+}
