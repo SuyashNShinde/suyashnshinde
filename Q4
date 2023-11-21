@@ -1,3 +1,9 @@
+Q4. Write C++ program for String operations. Write the following functions:
+i. Frequency (): that determines the frequency of occurrence of a particular
+characterin the string.
+ii. Palindrome (): to check whether a given string is palindrome or not.
+
+
 #include <iostream>
 #include <string>
 #include <cctype>
