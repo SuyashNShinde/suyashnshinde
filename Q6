@@ -1,3 +1,8 @@
+Q6. Write a program in C++ to perform matrix operations add_matrix() and multi_matrix()
+using appropriate data structure. Also write how to determine time and space
+complexity of your program.
+
+
 #include <iostream>
 #include <vector>
 
