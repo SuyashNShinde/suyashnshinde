@@ -1,0 +1,62 @@
+Q22. Write a modular program using object-oriented programming features to implement
+Insertion sort.
+
+#include <iostream>
+#include <vector>
+
+// Class representing an insertion sort operation
+class InsertionSort {
+public:
+    // Constructor with vector initialization
+    InsertionSort(std::vector<int>& arr) : data(arr) {}
+
+    // Function to perform insertion sort
+    void sort() {
+        int n = data.size();
+        for (int i = 1; i < n; ++i) {
+            int key = data[i];
+            int j = i - 1;
+
+            // Move elements of data[0..i-1] that are greater than key to one position ahead of their current position
+            while (j >= 0 && data[j] > key) {
+                data[j + 1] = data[j];
+                --j;
+            }
+
+            data[j + 1] = key;
+        }
+    }
+
+    // Function to display the sorted array
+    void display() const {
+        std::cout << "Sorted Array: ";
+        for (int value : data) {
+            std::cout << value << " ";
+        }
+        std::cout << std::endl;
+    }
+
+private:
+    std::vector<int>& data; // Data container for insertion sort
+};
+
+int main() {
+    // Example usage of insertion sort
+    std::vector<int> dataArray = {12, 11, 13, 5, 6};
+    InsertionSort insertionSort(dataArray);
+
+    // Display the array before sorting
+    std::cout << "Original Array: ";
+    for (int value : dataArray) {
+        std::cout << value << " ";
+    }
+    std::cout << std::endl;
+
+    // Perform insertion sort
+    insertionSort.sort();
+
+    // Display the sorted array
+    insertionSort.display();
+
+    return 0;
+}
