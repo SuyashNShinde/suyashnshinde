@@ -1,0 +1,79 @@
+#include <iostream>
+#include <vector>
+
+// Function to check whether a given matrix is upper triangular or not
+bool isUpperTriangular(const std::vector<std::vector<int>>& matrix) {
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+
+    for (int i = 1; i < rows; ++i) {
+        for (int j = 0; j < i && j < cols; ++j) {
+            if (matrix[i][j] != 0) {
+                return false; // If any element below the main diagonal is non-zero, it's not upper triangular
+            }
+        }
+    }
+
+    return true;
+}
+
+// Function to compute the summation of diagonal elements in a matrix
+int sumDiagonalElements(const std::vector<std::vector<int>>& matrix) {
+    int sum = 0;
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+
+    for (int i = 0; i < rows && i < cols; ++i) {
+        sum += matrix[i][i]; // Summing diagonal elements
+    }
+
+    return sum;
+}
+
+// Function to compute the transpose of a matrix
+std::vector<std::vector<int>> transposeMatrix(const std::vector<std::vector<int>>& matrix) {
+    int rows = matrix.size();
+    int cols = matrix[0].size();
+
+    std::vector<std::vector<int>> result(cols, std::vector<int>(rows, 0));
+
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            result[j][i] = matrix[i][j]; // Transposing elements
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    // Example matrix
+    std::vector<std::vector<int>> matrix = {
+        {1, 2, 3},
+        {0, 4, 5},
+        {0, 0, 6}
+    };
+
+    // Check if the matrix is upper triangular
+    if (isUpperTriangular(matrix)) {
+        std::cout << "The matrix is upper triangular." << std::endl;
+    } else {
+        std::cout << "The matrix is not upper triangular." << std::endl;
+    }
+
+    // Compute and display the summation of diagonal elements
+    int diagonalSum = sumDiagonalElements(matrix);
+    std::cout << "Sum of diagonal elements: " << diagonalSum << std::endl;
+
+    // Compute and display the transpose of the matrix
+    std::vector<std::vector<int>> transposedMatrix = transposeMatrix(matrix);
+    std::cout << "Transpose of the matrix:\n";
+    for (const auto& row : transposedMatrix) {
+        for (int element : row) {
+            std::cout << element << " ";
+        }
+        std::cout << "\n";
+    }
+
+    return 0;
+}
