@@ -1,0 +1,66 @@
+Write a C++ Program to create and display a Doubly linked list. Also insert a
+node at the beginning of the linked list.
+
+#include <iostream>
+
+// Definition of a Node in the doubly linked list
+struct Node {
+    int data;      // Data of the node
+    Node* next;    // Pointer to the next node in the list
+    Node* prev;    // Pointer to the previous node in the list
+};
+
+// Function to insert a node at the beginning of the doubly linked list
+void insertAtBeginning(Node*& head, int value) {
+    Node* newNode = new Node(); // Create a new node
+    newNode->data = value;      // Set its data
+    newNode->prev = nullptr;    // Its previous node will be nullptr since it's the new head
+    newNode->next = head;       // Make it point to the current head
+
+    if (head != nullptr) {
+        head->prev = newNode; // Update the previous pointer of the current head
+    }
+
+    head = newNode; // Update the head to the new node
+}
+
+// Function to display the doubly linked list from head to tail
+void displayListForward(Node* head) {
+    Node* current = head;
+    while (current != nullptr) {
+        std::cout << current->data << " ";
+        current = current->next;
+    }
+    std::cout << std::endl;
+}
+
+// Function to display the doubly linked list from tail to head
+void displayListBackward(Node* tail) {
+    Node* current = tail;
+    while (current != nullptr) {
+        std::cout << current->data << " ";
+        current = current->prev;
+    }
+    std::cout << std::endl;
+}
+
+int main() {
+    // Creating a doubly linked list
+    Node* head = nullptr; // Initializing an empty list
+    Node* tail = nullptr; // To keep track of the last node for efficient insertion at the end
+
+    // Inserting nodes at the beginning
+    insertAtBeginning(head, 3);
+    insertAtBeginning(head, 7);
+    insertAtBeginning(head, 10);
+
+    // Displaying the doubly linked list forward
+    std::cout << "Linked List (Forward): ";
+    displayListForward(head);
+
+    // Displaying the doubly linked list backward
+    std::cout << "Linked List (Backward): ";
+    displayListBackward(head);
+
+    return 0;
+}
