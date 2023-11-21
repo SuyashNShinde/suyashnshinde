@@ -1,0 +1,58 @@
+21. Write a modular program using object-oriented programming features to implement
+Bubble sort.
+
+#include <iostream>
+#include <vector>
+
+// Class representing a bubble sort operation
+class BubbleSort {
+public:
+    // Constructor with vector initialization
+    BubbleSort(std::vector<int>& arr) : data(arr) {}
+
+    // Function to perform bubble sort
+    void sort() {
+        int n = data.size();
+        for (int i = 0; i < n - 1; ++i) {
+            for (int j = 0; j < n - i - 1; ++j) {
+                if (data[j] > data[j + 1]) {
+                    // Swap if the element found is greater than the next element
+                    std::swap(data[j], data[j + 1]);
+                }
+            }
+        }
+    }
+
+    // Function to display the sorted array
+    void display() const {
+        std::cout << "Sorted Array: ";
+        for (int value : data) {
+            std::cout << value << " ";
+        }
+        std::cout << std::endl;
+    }
+
+private:
+    std::vector<int>& data; // Data container for bubble sort
+};
+
+int main() {
+    // Example usage of bubble sort
+    std::vector<int> dataArray = {64, 34, 25, 12, 22, 11, 90};
+    BubbleSort bubbleSort(dataArray);
+
+    // Display the array before sorting
+    std::cout << "Original Array: ";
+    for (int value : dataArray) {
+        std::cout << value << " ";
+    }
+    std::cout << std::endl;
+
+    // Perform bubble sort
+    bubbleSort.sort();
+
+    // Display the sorted array
+    bubbleSort.display();
+
+    return 0;
+}
